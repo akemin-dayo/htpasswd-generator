@@ -1,7 +1,7 @@
 htpasswd-generator
 ==================
 
-PHP script that generates an htpasswd file.
+PHP script that generates an htpasswd file using `crypt()`.
 
 Wrote this because I wanted to generate an htpasswd file for lighttpd, and the `htpasswd` tool seems to only be included with Apache.
 
