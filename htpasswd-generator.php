@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2014, Karen Tsai (angelXwind). <angelXwind@angelxwind.net>
+ * Copyright 2014, Karen／明美 (angelXwind). <angelXwind@angelxwind.net>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification,
