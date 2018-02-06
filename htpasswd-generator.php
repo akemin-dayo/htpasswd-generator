@@ -1,6 +1,7 @@
+#!/usr/bin/env php
 <?php
 /*
- * Copyright 2014, Karen／明美 (angelXwind). <angelXwind@angelxwind.net>
+ * Copyright 2014-2018, Karen／明美 (angelXwind). <angelXwind@angelxwind.net>
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without modification,
@@ -26,21 +27,15 @@
  */
 
 $firstRun = 1;
-if (php_sapi_name() == "cli") {
-	$dispNewline = "\n";
-} else {
-	$dispNewline = "<br>";
-}
 
 function cryptPass($unenc_username, $unenc_password) {
 	$encrypted = $unenc_username . ":" . crypt($unenc_password, base64_encode($unenc_password));
 	return $encrypted;
 }
 
-function cryptPassToFile($filename, $username, $password) {
+function cryptPassToFile($filename, $username, $password, $service) {
 	global $firstRun;
-	global $dispNewline;
-	if ($firstRun == 1) {
+	if ($firstRun) {
 		if (file_exists($filename . ".htpasswd")) {
 			unlink($filename . ".htpasswd");
 		}
@@ -49,7 +44,7 @@ function cryptPassToFile($filename, $username, $password) {
 		}
 		$firstRun = 0;
 	}
-	echo("Encrypting password for " . $username . " (" . $filename . ") ..." . $dispNewline);
+	echo("Encrypting " . $service . " password for " . $username . " (" . $filename . ") ..." . ((php_sapi_name() == "cli") ? "\n" : "<br>"));
 	file_put_contents($filename . ".htpasswd", cryptPass($username, $password) . "\n", FILE_APPEND);
 	file_put_contents($filename . ".plain", $username . ":" . $password . "\n", FILE_APPEND);
 }
