@@ -49,6 +49,6 @@ function cryptPassToFile($filename, $username, $password, $service) {
 	file_put_contents($filename . ".plain", $username . ":" . $password . "\n", FILE_APPEND);
 }
 
-cryptPassToFile("example", "username", "password");
-cryptPassToFile("example", "username2", "password2");
+cryptPassToFile("example", "username", "password", "example-realm");
+cryptPassToFile("example", "username2", "password2", "example-realm2");
 ?>
